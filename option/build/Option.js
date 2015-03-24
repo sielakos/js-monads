@@ -16,13 +16,59 @@ var Option = (function () {
       value: function hasValue() {
         return this.value !== undefined && this.value !== null;
       }
+    },
+    get: {
+      value: function get() {
+        if (this.hasValue()) {
+          return this.value;
+        }
+
+        throw new Error("Option is none!");
+      }
+    },
+    flatMap: {
+      value: function flatMap(fn) {
+        if (this.hasValue()) {
+          return fn(this.value);
+        } else {
+          return this;
+        }
+      }
+    },
+    map: {
+      value: function map(fn) {
+        return this.flatMap(function (x) {
+          return Option.some(fn(x));
+        });
+      }
+    },
+    filter: {
+      value: function filter(predicate) {
+        var _this = this;
+
+        return this.flatMap(function (x) {
+          if (predicate(x)) {
+            return _this;
+          } else {
+            return Option.none();
+          }
+        });
+      }
+    },
+    getOrElse: {
+      value: function getOrElse(defaultValue) {
+        if (this.hasValue()) {
+          return this.value;
+        }
+        return defaultValue;
+      }
     }
   }, {
     some: {
       value: function some(value) {
         var opt = new Option(value);
         if (!opt.hasValue()) {
-          throw new Error("expected defined value that is not null");
+          throw new Error("expected value that is not null or undefined");
         }
         return opt;
       }
