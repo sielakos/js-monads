@@ -58,8 +58,8 @@ class Option {
 
   static lift(fn) {
     return function () {
-      var argsOption = Array.prototype.reduce.call(arguments, (acc, arg) => {
-        return acc.flatMap((args) => arg.map(arg => {
+      var argsOption = Array.prototype.reduce.call(arguments, (argsOption, argOption) => {
+        return argsOption.flatMap((args) => argOption.map(arg => {
           args.push(arg);
           return args;
         }));

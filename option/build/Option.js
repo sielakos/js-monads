@@ -83,9 +83,9 @@ var Option = (function () {
         return function () {
           var _this = this;
 
-          var argsOption = Array.prototype.reduce.call(arguments, function (acc, arg) {
-            return acc.flatMap(function (args) {
-              return arg.map(function (arg) {
+          var argsOption = Array.prototype.reduce.call(arguments, function (argsOption, argOption) {
+            return argsOption.flatMap(function (args) {
+              return argOption.map(function (arg) {
                 args.push(arg);
                 return args;
               });

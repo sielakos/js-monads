@@ -3,6 +3,7 @@ var babel = require('gulp-babel');
 
 var sources = [
   'option/*.js',
+  'promise/*.js',
   'simple_examples/*.js'
 ];
 
