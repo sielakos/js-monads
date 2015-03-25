@@ -64,4 +64,20 @@ describe('Option', function () {
     expect(Option.some(4).filter(function (x) { return x % 2 == 0}).get()).toBe(4);
     expect(Option.some(3).filter(function (x) { return x % 2 == 0}).hasValue()).toBeFalsy();
   });
+
+  it('getOrElse gets value or returns default', function () {
+    expect(Option.some(3).getOrElse(5)).toBe(3);
+    expect(Option.none().getOrElse(5)).toBe(5);
+  });
+
+  it('lift', function () {
+    function add(a, b) {
+      return a+b;
+    }
+
+    var addLifted = Option.lift(add);
+
+    expect(addLifted(Option.some(1), Option.some(2)).getOrElse('error')).toBe(3);
+    expect(addLifted(Option.some(1), Option.none()).getOrElse('error')).toBe('error');
+  });
 });

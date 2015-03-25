@@ -77,6 +77,26 @@ var Option = (function () {
       value: function none() {
         return new Option();
       }
+    },
+    lift: {
+      value: function lift(fn) {
+        return function () {
+          var _this = this;
+
+          var argsOption = Array.prototype.reduce.call(arguments, function (acc, arg) {
+            return acc.flatMap(function (args) {
+              return arg.map(function (arg) {
+                args.push(arg);
+                return args;
+              });
+            });
+          }, Option.some([]));
+
+          return argsOption.map(function (args) {
+            return fn.apply(_this, args);
+          });
+        };
+      }
     }
   });
 

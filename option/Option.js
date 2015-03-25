@@ -55,4 +55,17 @@ class Option {
     }
     return defaultValue;
   }
+
+  static lift(fn) {
+    return function () {
+      var argsOption = Array.prototype.reduce.call(arguments, (acc, arg) => {
+        return acc.flatMap((args) => arg.map(arg => {
+          args.push(arg);
+          return args;
+        }));
+      }, Option.some([]));
+
+      return argsOption.map(args => fn.apply(this, args));
+    }
+  }
 }
