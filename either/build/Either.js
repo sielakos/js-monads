@@ -49,12 +49,21 @@ var EitherSideMonad = (function () {
       value: function then(successFn, failFn) {
         if (this.isSameSide()) {
           var either = successFn(this.either.value, this.either.isRight());
-          return new EitherSideMonad(either, this.useRight);
+          return this.createMonad(either);
         } else if (failFn) {
           var either = successFn(this.either.value, this.either.isRight());
-          return new EitherSideMonad(either, this.useRight);
+          return this.createMonad(either);
         }
         return this;
+      }
+    },
+    createMonad: {
+      value: function createMonad(either) {
+        if (either.isRight()) {
+          return either;
+        } else {
+          return new EitherSideMonad(either, this.useRight);
+        }
       }
     },
     map: {
