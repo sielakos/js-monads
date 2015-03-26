@@ -21,6 +21,7 @@ module.exports = function(config) {
       'option/build/*.js',
       'promise/build/*.js',
       'rxjs/build/*.js',
+      'either/build/*.js',
       'tests/**/*.spec.js'
     ],
 

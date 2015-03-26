@@ -4683,7 +4683,7 @@
    */
   observableProto.selectMany = observableProto.flatMap = function (selector, resultSelector, thisArg) {
     if (isFunction(selector) && isFunction(resultSelector)) {
-      return this.flatMap(function (x, i) {
+      return this.then(function (x, i) {
         var selectorResult = selector(x, i);
         isPromise(selectorResult) && (selectorResult = observableFromPromise(selectorResult));
         (isArrayLike(selectorResult) || isIterable(selectorResult)) && (selectorResult = observableFrom(selectorResult));

@@ -5,12 +5,12 @@ var sources = [
   'option/*.js',
   'promise/*.js',
   'rxjs/*.js',
-  'simple_examples/*.js'
+  'simple_examples/*.js',
+  'either/*.js'
 ];
 
 gulp.task('default', function () {
     return gulp.watch(sources, ['build']);
-
 });
 
 gulp.task('build', function () {
