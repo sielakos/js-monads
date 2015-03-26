@@ -4,6 +4,7 @@ var babel = require('gulp-babel');
 var sources = [
   'option/*.js',
   'promise/*.js',
+  'rxjs/*.js',
   'simple_examples/*.js'
 ];
 

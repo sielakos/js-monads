@@ -16,8 +16,11 @@ module.exports = function(config) {
     // list of files / patterns to load in the browser
     files: [
       'q.js',
+      'rx.all.js',
+      'rx.testing.js',
       'option/build/*.js',
       'promise/build/*.js',
+      'rxjs/build/*.js',
       'tests/**/*.spec.js'
     ],
 
